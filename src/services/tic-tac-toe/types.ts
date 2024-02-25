@@ -1,3 +1,5 @@
+type Player = 'O' | 'X';
+
 type Square = 'O' | 'X' | null;
 
 type Squares = [Square, Square, Square, Square, Square, Square, Square, Square, Square];
@@ -12,4 +14,4 @@ interface SquareProps {
     onClick: () => void;
 }
 
-export type { BoardProps, Square, Squares, SquareProps };
+export type { BoardProps, Square, Squares, SquareProps, Player };
