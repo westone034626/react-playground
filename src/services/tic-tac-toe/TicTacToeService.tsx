@@ -4,36 +4,36 @@ import type { Squares, Player } from '@tic-tac-toe/types';
 
 const initSquares = () => Array(9).fill(null) as Squares;
 
-const getIsDecidedWinner = (sqares: Squares): boolean => {
-    if (sqares[0] && sqares[0] === sqares[1] && sqares[1] === sqares[2]) {
+const getIsDecidedWinner = (squares: Squares): boolean => {
+    if (squares[0] && squares[0] === squares[1] && squares[1] === squares[2]) {
         return true;
     }
 
-    if (sqares[3] && sqares[3] === sqares[4] && sqares[4] === sqares[5]) {
+    if (squares[3] && squares[3] === squares[4] && squares[4] === squares[5]) {
         return true;
     }
 
-    if (sqares[6] && sqares[6] === sqares[7] && sqares[7] === sqares[8]) {
+    if (squares[6] && squares[6] === squares[7] && squares[7] === squares[8]) {
         return true;
     }
 
-    if (sqares[0] && sqares[0] === sqares[3] && sqares[3] === sqares[6]) {
+    if (squares[0] && squares[0] === squares[3] && squares[3] === squares[6]) {
         return true;
     }
 
-    if (sqares[1] && sqares[1] === sqares[4] && sqares[4] === sqares[7]) {
+    if (squares[1] && squares[1] === squares[4] && squares[4] === squares[7]) {
         return true;
     }
 
-    if (sqares[2] && sqares[2] === sqares[5] && sqares[5] === sqares[8]) {
+    if (squares[2] && squares[2] === squares[5] && squares[5] === squares[8]) {
         return true;
     }
 
-    if (sqares[0] && sqares[0] === sqares[4] && sqares[4] === sqares[8]) {
+    if (squares[0] && squares[0] === squares[4] && squares[4] === squares[8]) {
         return true;
     }
 
-    if (sqares[2] && sqares[2] === sqares[4] && sqares[4] === sqares[6]) {
+    if (squares[2] && squares[2] === squares[4] && squares[4] === squares[6]) {
         return true;
     }
 
@@ -41,14 +41,14 @@ const getIsDecidedWinner = (sqares: Squares): boolean => {
 };
 
 function TicTacToeService() {
-    const [sqaures, setSquares] = useState<Squares>(initSquares);
+    const [squares, setSquares] = useState<Squares>(initSquares);
     const [currentPlayer, setCurrentPlayer] = useState<Player>('X');
 
-    const isDecidedWinner = getIsDecidedWinner(sqaures);
+    const isDecidedWinner = getIsDecidedWinner(squares);
     const opponentPlayer = currentPlayer === 'O' ? 'X' : 'O';
     const winner: Player | null = isDecidedWinner ? opponentPlayer : null;
 
-    const everySquaresAreFilled = sqaures.every(Boolean);
+    const everySquaresAreFilled = squares.every(Boolean);
 
     const title = winner
         ? `Winner is ${winner}`
@@ -61,16 +61,16 @@ function TicTacToeService() {
             return;
         }
 
-        const alreadySelectedSquare = sqaures[squareIndex];
+        const alreadySelectedSquare = squares[squareIndex];
         if (alreadySelectedSquare) {
             return;
         }
 
-        const cpSquares = [...sqaures] as Squares;
+        const copiedSquares = [...squares] as Squares;
 
-        cpSquares[squareIndex] = currentPlayer;
+        copiedSquares[squareIndex] = currentPlayer;
 
-        setSquares(cpSquares);
+        setSquares(copiedSquares);
 
         setCurrentPlayer(opponentPlayer);
     };
@@ -84,7 +84,7 @@ function TicTacToeService() {
         <div className="flex flex-col gap-1">
             <span className="text-2xl">{title}</span>
 
-            <Board squares={sqaures} onClickSquare={onClickSquare} />
+            <Board squares={squares} onClickSquare={onClickSquare} />
 
             <button
                 type="button"
