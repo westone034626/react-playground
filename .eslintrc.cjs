@@ -21,6 +21,8 @@ module.exports = {
         'react/jsx-one-expression-per-line': 0,
         'react/react-in-jsx-scope': 0,
         semi: ['off'],
-        'import/no-unresolved': 0
+        'import/no-unresolved': 0,
+        'jsx-a11y/no-static-element-interactions': 0,
+        'jsx-a11y/click-events-have-key-events': 0
     },
 };

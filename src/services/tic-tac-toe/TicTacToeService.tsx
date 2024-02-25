@@ -7,7 +7,17 @@ const initSquares = () => Array(9).fill(null) as Squares;
 function TicTacToeService() {
     const [sqaures, setSquares] = useState<Squares>(initSquares);
 
-    return <Board squares={sqaures} />;
+    const onClickSquare = (squareIndex: number) => {
+        const cpSquares = [...sqaures] as Squares;
+
+        if (!cpSquares[squareIndex]) {
+            cpSquares[squareIndex] = 'X';
+        }
+
+        setSquares(cpSquares);
+    };
+
+    return <Board squares={sqaures} onClickSquare={onClickSquare} />;
 }
 
 export default TicTacToeService;
