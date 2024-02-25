@@ -45,13 +45,19 @@ function TicTacToeService() {
     const [currentPlayer, setCurrentPlayer] = useState<Player>('X');
 
     const isDecidedWinner = getIsDecidedWinner(sqaures);
-    const lastPlayer = currentPlayer === 'O' ? 'X' : 'O';
-    const winner: Player | null = isDecidedWinner ? lastPlayer : null;
+    const opponentPlayer = currentPlayer === 'O' ? 'X' : 'O';
+    const winner: Player | null = isDecidedWinner ? opponentPlayer : null;
 
-    const title = winner ? `winner is ${winner}` : `player is ${currentPlayer}`;
+    const everySquaresAreFilled = sqaures.every(Boolean);
+
+    const title = winner
+        ? `Winner is ${winner}`
+        : everySquaresAreFilled
+          ? 'Draw game'
+          : `Player is ${currentPlayer}`;
 
     const onClickSquare = (squareIndex: number) => {
-        if (isDecidedWinner) {
+        if (winner || everySquaresAreFilled) {
             return;
         }
 
@@ -66,7 +72,7 @@ function TicTacToeService() {
 
         setSquares(cpSquares);
 
-        setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X');
+        setCurrentPlayer(opponentPlayer);
     };
 
     return (
