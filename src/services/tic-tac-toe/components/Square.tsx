@@ -8,7 +8,7 @@ function Square(props: SquareProps) {
             onClick={onClick}
             className="flex justify-center items-center w-[100px] h-[100px] border border-black"
         >
-            {status}
+            <span className="text-3xl">{status}</span>
         </div>
     );
 }
