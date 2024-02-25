@@ -75,11 +75,24 @@ function TicTacToeService() {
         setCurrentPlayer(opponentPlayer);
     };
 
+    const onReplay = () => {
+        setSquares(initSquares());
+        setCurrentPlayer('X');
+    };
+
     return (
         <div className="flex flex-col gap-1">
             <span className="text-2xl">{title}</span>
 
             <Board squares={sqaures} onClickSquare={onClickSquare} />
+
+            <button
+                type="button"
+                onClick={onReplay}
+                className="border rounded-md border-gray-500 hover:bg-gray-500"
+            >
+                Replay
+            </button>
         </div>
     );
 }
