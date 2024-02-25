@@ -1,7 +1,8 @@
 import './App.css';
+import TicTacToeService from '@tic-tac-toe/TicTacToeService';
 
 function App() {
-    return <h1>Hello world!</h1>;
+    return <TicTacToeService />;
 }
 
 export default App;
